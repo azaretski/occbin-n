@@ -13,7 +13,7 @@ The function `solve_n_constraints` leaves a significant degree of freedom to the
 
 To use `solve_n_constraints`, you need at least two Dynare mod files: a reference mod file, where all constraints are in the reference---steady-state---regime, and an additional mod file, where constraint `1` is in the alternative regime and constraints `2,...,n` are in the reference regimes.
 
-Without further loss of generality, suppose `i=2`.
+Without further loss of generality, suppose `n=2`.
 
 ### Reference mod file
 Suppose the reference mod file has a name `name.mod`. You need to format it as follows.
@@ -21,7 +21,7 @@ Suppose the reference mod file has a name `name.mod`. You need to format it as f
 ```
 @#define regimes=[0,0]
 ```
-If `i=3`, the line must be `@#define regimes=[0,0,0]`, and so on.
+If `n=3`, the line must be `@#define regimes=[0,0,0]`, and so on.
 
 2. In the model declaration, declare the complementary slackness conditions as follows:
 ```
@@ -40,7 +40,7 @@ If `i=3`, the line must be `@#define regimes=[0,0,0]`, and so on.
 If `f_i` is a model expression, it of course must be declared elsewhere in the model declaration.
 
 ### Additional mod file
-Copy `name.mod` to `name_10.mod`. (If `i=3`, use `name_100.mod`, and so on.) The naming convention is important. Modify `name_10.mod` as follows.
+Copy `name.mod` to `name_10.mod`. (If `n=3`, use `name_100.mod`, and so on.) The naming convention is important. Modify `name_10.mod` as follows.
 1. Remove everything except sections `var`, `varexo`, `parameters` (can keep only declaration, no need to assign values), `model`, `shocks`, and the line `@#define regimes=[0,0]`.
 2. Change `@#define regimes=[0,0]` to `@#define regimes=[1,0]`.
 
